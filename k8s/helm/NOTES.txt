@@ -1,0 +1,7 @@
+helm template '.' --output-dir '.yamls'
+
+helm upgrade dnw-chat . --dry-run --debug --install
+
+helm upgrade dnw-chat . --install
+
+helm delete dnw-chat

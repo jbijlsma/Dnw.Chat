@@ -1,0 +1,51 @@
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <title>Web Socket Demo</title>
+</head>
+<body>
+<ul id="chat"></ul>
+
+<form>
+    <label for="message"><textarea rows="8" cols="80" id="message"></textarea></label>
+    <br />
+    <button type="submit">Send</button>
+</form>
+
+<script type="text/javascript">
+    const uuid = (Math.random() + 1).toString(36).substring(7);
+
+    let path = window.location.pathname;
+    if (!path.endsWith("/")) {
+        path = path + "/";
+    }
+
+    const eventSource = new EventSource(`${path}chat-updates`);
+
+    eventSource.addEventListener('message', event => {
+        console.log('received', event.data);
+        let li = document.createElement('li');
+        li.innerText = event.data;
+        document.querySelector('#chat').append(li);
+    });
+
+    document.querySelector('form').addEventListener('submit', event => {
+        event.preventDefault();
+        let message = document.querySelector('#message').value;
+        fetch(`${path}api/chats`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({uuid: uuid, message: message})
+        }).then((res) => res.json())
+        .then((data) => {
+            // console.log(data);
+            document.querySelector('#message').value = '';
+        });
+    });
+</script>
+
+</body>
+</html>

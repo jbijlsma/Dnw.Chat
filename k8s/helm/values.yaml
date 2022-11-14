@@ -1,0 +1,3 @@
+PrivateContainerRegistry: "localhost:5001/"
+ServicePort: 5050
+RedisPort: 6379
