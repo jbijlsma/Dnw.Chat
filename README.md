@@ -94,7 +94,7 @@ https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-zsh
 
 # Good to know
 
-https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http2?view=aspnetcore-6.0
+Http/2 and Http/3 is supported since .net core 3 but not on all linux distributions. Also TLS 1.2 is needed.
 
-Http/2 and Http3 is supported since .net core 3 on supported linux distributions.
+See: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http2?view=aspnetcore-6.0
 
