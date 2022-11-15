@@ -1,17 +1,14 @@
-using Dnw.Chat.Services;
+using Dnw.Chat.Api.Services;
 using StackExchange.Redis;
 
-namespace Dnw.Chat.ServiceExtensions;
+namespace Dnw.Chat.Api.ServiceExtensions;
 
 public static class ChatServiceExtensions
 {
-    public static IServiceCollection AddRedis(this IServiceCollection services, ConfigurationManager config)
+    public static void AddRedis(this IServiceCollection services, string connectionString)
     {
-        var connectionString = config.GetValue<string>("RedisConnectionString");
         services.AddSingleton<IConnectionMultiplexer>(_ => ConnectionMultiplexer.Connect(connectionString));
         services.AddSingleton<IChatPublisher, RedisChatPublisher>();
         services.AddSingleton<IChatConsumer, RedisChatConsumer>();
-
-        return services;
     }
 }

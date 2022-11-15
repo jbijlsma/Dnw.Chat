@@ -1,8 +1,8 @@
-using Dnw.Chat.Models;
-using Dnw.Chat.Services;
+using Dnw.Chat.Api.Models;
+using Dnw.Chat.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Dnw.Chat.Controllers;
+namespace Dnw.Chat.Api.Controllers;
 
 [Route("api/[controller]")]
 public class ChatsController : ControllerBase
@@ -17,7 +17,7 @@ public class ChatsController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody]ChatMessage chatMsg)
+    public async Task<IActionResult> AddChat([FromBody]ChatMessage chatMsg)
     {
         _logger.LogWarning("{MachineName} received {Message}", Environment.MachineName, chatMsg.Message);
         await _chatPublisher.Publish($"{chatMsg.Uuid} said {chatMsg.Message}"); 

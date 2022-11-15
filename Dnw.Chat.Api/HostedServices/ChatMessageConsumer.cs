@@ -1,7 +1,7 @@
-using Dnw.Chat.Services;
+using Dnw.Chat.Api.Services;
 using Lib.AspNetCore.ServerSentEvents;
 
-namespace Dnw.Chat.HostedServices;
+namespace Dnw.Chat.Api.HostedServices;
 
 public class ChatMessageConsumer : BackgroundService
 {

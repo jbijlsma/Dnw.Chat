@@ -1,6 +1,6 @@
 using StackExchange.Redis;
 
-namespace Dnw.Chat.Services;
+namespace Dnw.Chat.Api.Services;
 
 public class RedisChatPublisher : IChatPublisher
 {

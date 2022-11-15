@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Dnw.Chat.Models;
+namespace Dnw.Chat.Api.Models;
 
 public class ChatMessage
 {

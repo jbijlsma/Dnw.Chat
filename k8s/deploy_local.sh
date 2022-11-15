@@ -23,7 +23,7 @@ kind load docker-image rabbitmq:3.11-management
 # Build local image, tag it and push it to the local registry
 TAG="localhost:5001/$RELEASE_NAME:latest"
 echo "TAG=$TAG"
-docker build -t $TAG -f ../Dockerfile ../
+docker build -t $TAG -f ../Dnw.Chat.Api/Dockerfile ../Dnw.Chat.Api/
 docker push $TAG
 
 # Install app into k8s cluster

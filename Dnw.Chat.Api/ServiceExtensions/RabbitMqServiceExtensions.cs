@@ -1,17 +1,14 @@
-using Dnw.Chat.Services;
+using Dnw.Chat.Api.Services;
 using RabbitMQ.Client;
 
-namespace Dnw.Chat.ServiceExtensions;
+namespace Dnw.Chat.Api.ServiceExtensions;
 
 public static class RabbitMqServiceExtensions
 {
-    public static IServiceCollection AddRabbitMq(this IServiceCollection services, ConfigurationManager config)
+    public static void AddRabbitMq(this IServiceCollection services, string hostName)
     {
-        var hostName = config.GetValue<string>("RabbitMqHostName");
         services.AddSingleton<IConnectionFactory>(_ => new ConnectionFactory { HostName = hostName });
         services.AddSingleton<IChatPublisher, RabbitMqChatPublisher>();
         services.AddSingleton<IChatConsumer, RabbitMqChatConsumer>();
-
-        return services;
     }
 }

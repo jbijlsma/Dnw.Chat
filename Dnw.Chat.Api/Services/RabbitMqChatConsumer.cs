@@ -2,7 +2,7 @@ using System.Text;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace Dnw.Chat.Services;
+namespace Dnw.Chat.Api.Services;
 
 public class RabbitMqChatConsumer : IChatConsumer, IDisposable
 {
