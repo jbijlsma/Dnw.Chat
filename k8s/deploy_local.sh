@@ -17,6 +17,9 @@ kind load docker-image mcr.microsoft.com/dotnet/aspnet:6.0-alpine
 docker pull arm64v8/redis:latest
 kind load docker-image arm64v8/redis:latest
 
+docker pull rabbitmq:3.11-management
+kind load docker-image rabbitmq:3.11-management
+
 # Build local image, tag it and push it to the local registry
 TAG="localhost:5001/$RELEASE_NAME:latest"
 echo "TAG=$TAG"

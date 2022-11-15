@@ -1,20 +1,20 @@
+using Dnw.Chat.Services;
 using Lib.AspNetCore.ServerSentEvents;
-using StackExchange.Redis;
 
-namespace Dnw.Chat;
+namespace Dnw.Chat.HostedServices;
 
 public class ChatMessageConsumer : BackgroundService
 {
-    private readonly IConnectionMultiplexer _mux;
+    private readonly IChatConsumer _chatConsumer;
     private readonly IServerSentEventsService _sseService;
     private readonly ILogger<ChatMessageConsumer> _logger;
 
     public ChatMessageConsumer(
-        IConnectionMultiplexer mux,
+        IChatConsumer chatConsumer,
         IServerSentEventsService sseService,
         ILogger<ChatMessageConsumer> logger)
     {
-        _mux = mux;
+        _chatConsumer = chatConsumer;
         _sseService = sseService;
         _logger = logger;
     }
@@ -23,15 +23,15 @@ public class ChatMessageConsumer : BackgroundService
     {
         _logger.LogInformation("ChatMessageConsumer.ExecuteAsync");
 
-        await _mux.GetSubscriber().SubscribeAsync(RedisChannels.ChatMessages, (_, msg) =>
+        await _chatConsumer.Start(msg =>
         {
-            _logger.LogInformation("{MachineName} received {message}", Environment.MachineName, msg);
-
+            _logger.LogInformation("Message received: {message}", msg);
+            
             var clients = _sseService.GetClients();
             foreach (var client in clients)
             {
                 client.SendEventAsync(msg, cancellationToken).ConfigureAwait(false);
             }
-        }).ConfigureAwait(false);
+        });
     }
 }
