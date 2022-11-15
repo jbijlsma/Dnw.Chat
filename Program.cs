@@ -1,13 +1,22 @@
-using Dnw.Chat;
+using Dnw.Chat.HostedServices;
+using Dnw.Chat.ServiceExtensions;
+using Dnw.Chat.Services;
 using Lib.AspNetCore.ServerSentEvents;
-using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var redisConnectionString = builder.Configuration.GetValue<string>("RedisConnectionString");
-builder.Services.AddSingleton<IConnectionMultiplexer>(_ =>
-    ConnectionMultiplexer.Connect(redisConnectionString));
+//Add services to the container.
+if (!Enum.TryParse<PubSubType>(Environment.GetEnvironmentVariable("PUB_SUB_TYPE"), out var pubSubType))
+    pubSubType = PubSubType.RabbitMq;
+
+if (pubSubType == PubSubType.Redis)
+{
+    builder.Services.AddRedis(builder.Configuration);
+}
+else
+{
+    builder.Services.AddRabbitMq(builder.Configuration);
+}
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

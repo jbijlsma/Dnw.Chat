@@ -1,15 +1,23 @@
 # Introduction
 
-Simplistic chat broadcast example that allows horizontal scaling of the asp.net core web app. It uses Redis PubSub and Server Side Events. 
+Simplistic chat broadcast example that allows horizontal scaling of the asp.net core web app. It uses Redis PubSub / RabbitMq and Server Side Events. 
 
 Note that the asp.net web app serves as both the front-end and api. A background service is used to consume all the redis chat messages.  
 
 # Testing locally
 
-Start a redis instance locally (in docker):
+You can configure either Redis or RabbitMq using the PUB_SUB_TYPE environment variable. For allowed values see the PubSubType enum.
+
+To use with Redis start a redis instance locally (in docker):
 
 ```
 docker run -dp 6379:6379 redis
+```
+
+To use RabbitMq instead run:
+
+```
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.11-management
 ```
 
 Use your IDE to run the Dnw.Chat project or use the command line like below:
@@ -19,6 +27,7 @@ cd ./Dnw.Chat
 
 ASPNETCORE_ENVIRONMENT=Development \
 ASPNETCORE_URLS=https://localhost:5002 \
+PUB_SUB_TYPE=Redis
 dotnet run --no-launch-profile
 ```
 

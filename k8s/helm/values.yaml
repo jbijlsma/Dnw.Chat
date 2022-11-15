@@ -1,3 +1,5 @@
 PrivateContainerRegistry: "localhost:5001/"
 ServicePort: 5050
+PubSubType: "RabbitMq"
 RedisPort: 6379
+RabbitMqPort: 5672

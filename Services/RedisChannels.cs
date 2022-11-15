@@ -1,4 +1,4 @@
-namespace Dnw.Chat;
+namespace Dnw.Chat.Services;
 
 public static class RedisChannels
 {
