@@ -2,7 +2,7 @@
 
 Simplistic chat broadcast example that allows horizontal scaling of the asp.net core web app. It uses Redis PubSub / RabbitMq and Server Side Events. 
 
-Note that the asp.net web app serves as both the front-end and api. A background service is used to consume all the redis chat messages.  
+Note that the asp.net web app serves as both the front-end and api. A background service is used to consume all the chat messages.  
 
 # Testing locally
 
