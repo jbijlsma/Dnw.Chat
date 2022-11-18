@@ -1,4 +1,5 @@
 using Dnw.Chat.Api.Services;
+using Dnw.Chat.Api.Services.Redis;
 using NSubstitute;
 using StackExchange.Redis;
 using Xunit;

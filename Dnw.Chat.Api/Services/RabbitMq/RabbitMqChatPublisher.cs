@@ -1,7 +1,7 @@
 using System.Text;
 using RabbitMQ.Client;
 
-namespace Dnw.Chat.Api.Services;
+namespace Dnw.Chat.Api.Services.RabbitMq;
 
 public class RabbitMqChatPublisher : IChatPublisher
 {

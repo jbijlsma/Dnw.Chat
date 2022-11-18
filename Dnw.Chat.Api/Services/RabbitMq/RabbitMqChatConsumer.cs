@@ -2,7 +2,7 @@ using System.Text;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace Dnw.Chat.Api.Services;
+namespace Dnw.Chat.Api.Services.RabbitMq;
 
 public class RabbitMqChatConsumer : IChatConsumer, IDisposable
 {
@@ -39,6 +39,11 @@ public class RabbitMqChatConsumer : IChatConsumer, IDisposable
             autoAck: true,
             consumer: consumer);
 
+        return Task.CompletedTask;
+    }
+
+    public Task Stop()
+    {
         return Task.CompletedTask;
     }
 
