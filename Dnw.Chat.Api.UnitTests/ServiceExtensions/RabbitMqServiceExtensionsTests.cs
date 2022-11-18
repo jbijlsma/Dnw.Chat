@@ -1,34 +1,32 @@
 using Dnw.Chat.Api.ServiceExtensions;
 using Dnw.Chat.Api.Services;
-using Dnw.Chat.Api.Services.Kafka;
 using Microsoft.Extensions.DependencyInjection;
+using RabbitMQ.Client;
 using Xunit;
 
-namespace Dnw.Chat.Api.UnitTests.ServiceExtensionTests;
+namespace Dnw.Chat.Api.UnitTests.ServiceExtensions;
 
-public class KafkaServiceExtensionsTests
+public class RabbitMqServiceExtensionsTests
 {
     [Fact]
-    public void AddKafka()
+    public void AddRabbitMq()
     {
         // Given
         var serviceCollection = new ServiceCollection();
 
         // When
-        serviceCollection.AddKafka("someBootstrapServers");
+        serviceCollection.AddRabbitMq("SomeHostName");
 
         // Then
         var expectedRegistrations = new[]
         {
             typeof(IChatMessageBusInitializer),
-            typeof(IKafkaProducerFactory),
-            typeof(IChatPublisher),
-            typeof(IKafkaAdminClientBuilderFactory),
-            typeof(IKafkaConsumerFactory),
+            typeof(IConnectionFactory), 
+            typeof(IChatPublisher), 
             typeof(IChatConsumer)
         };
-
         Assert.Equal(expectedRegistrations.Length, serviceCollection.Count);
+        
         foreach (var expectedRegistration in expectedRegistrations)
         {
             Assert.Contains(serviceCollection, r => r.ServiceType == expectedRegistration);
