@@ -1,5 +1,5 @@
 using System.Text;
-using Dnw.Chat.Api.Services;
+using Dnw.Chat.Api.Services.RabbitMq;
 using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Containers;
 using Microsoft.Extensions.Logging;

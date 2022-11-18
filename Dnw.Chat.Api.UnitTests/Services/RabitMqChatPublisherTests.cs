@@ -1,5 +1,5 @@
 using System.Text;
-using Dnw.Chat.Api.Services;
+using Dnw.Chat.Api.Services.RabbitMq;
 using NSubstitute;
 using RabbitMQ.Client;
 using Xunit;

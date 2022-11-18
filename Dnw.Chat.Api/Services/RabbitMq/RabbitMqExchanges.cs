@@ -1,4 +1,4 @@
-namespace Dnw.Chat.Api.Services;
+namespace Dnw.Chat.Api.Services.RabbitMq;
 
 public static class RabbitMqExchanges
 {

@@ -1,6 +1,6 @@
 using StackExchange.Redis;
 
-namespace Dnw.Chat.Api.Services;
+namespace Dnw.Chat.Api.Services.Redis;
 
 public class RedisChatConsumer : IChatConsumer
 {
@@ -20,5 +20,10 @@ public class RedisChatConsumer : IChatConsumer
             _logger.LogInformation("{MachineName} received {message}", Environment.MachineName, msg);
             onMessage(msg!);
         }).ConfigureAwait(false);
+    }
+
+    public Task Stop()
+    {
+        return Task.CompletedTask;
     }
 }

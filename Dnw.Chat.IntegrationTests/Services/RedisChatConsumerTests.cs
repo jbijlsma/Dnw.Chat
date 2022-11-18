@@ -1,4 +1,4 @@
-using Dnw.Chat.Api.Services;
+using Dnw.Chat.Api.Services.Redis;
 using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Configurations;
 using DotNet.Testcontainers.Containers;

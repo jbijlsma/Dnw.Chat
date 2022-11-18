@@ -18,7 +18,15 @@ public class RedisMqServiceExtensionsTests
         serviceCollection.AddRedis("someConnectionString");
 
         // Then
-        var expectedRegistrations = new[] { typeof(IConnectionMultiplexer), typeof(IChatPublisher), typeof(IChatConsumer) };
+        var expectedRegistrations = new[]
+        {
+            typeof(IChatMessageBusInitializer),
+            typeof(IConnectionMultiplexer),
+            typeof(IChatPublisher),
+            typeof(IChatConsumer)
+        };
+
+        Assert.Equal(expectedRegistrations.Length, serviceCollection.Count);
         foreach (var expectedRegistration in expectedRegistrations)
         {
             Assert.Contains(serviceCollection, r => r.ServiceType == expectedRegistration);

@@ -14,6 +14,8 @@ public class ChatMessageConsumerTests
     {
         // Given
         const string msg = "aMsg";
+
+        var chatMessageBusInitializer = Substitute.For<IChatMessageBusInitializer>();
         
         var chatConsumer = Substitute.For<IChatConsumer>();
         chatConsumer
@@ -30,12 +32,14 @@ public class ChatMessageConsumerTests
         
         var logger = Substitute.For<ILogger<ChatMessageConsumer>>();
         
-        var hostedService = new ChatMessageConsumer(chatConsumer, sseService, logger);
+        var hostedService = new ChatMessageConsumer(chatMessageBusInitializer, chatConsumer, sseService, logger);
         
         // When
         await hostedService.StartAsync(CancellationToken.None);
 
         // Then
+        await chatMessageBusInitializer.Received(1).Initialize();
+        
         foreach (var client in sseClients)
         {
             await client.Received(1).SendEventAsync(msg, Arg.Any<CancellationToken>());

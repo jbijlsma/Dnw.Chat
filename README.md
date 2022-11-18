@@ -20,6 +20,12 @@ To use RabbitMq instead run:
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.11-management
 ```
 
+And for Kafka use:
+
+```
+docker compose -f ./kafka-docker-compose.yml up -d
+```
+
 Use your IDE to run the Dnw.Chat project or use the command line like below:
 
 ```
