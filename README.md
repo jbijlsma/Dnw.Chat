@@ -23,7 +23,7 @@ docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.11-ma
 And for Kafka use:
 
 ```
-docker compose -f ./kafka-docker-compose.yml up -d
+docker-compose -f ./kafka-docker-compose.yml up -d
 ```
 
 Use your IDE to run the Dnw.Chat project or use the command line like below:
@@ -31,9 +31,9 @@ Use your IDE to run the Dnw.Chat project or use the command line like below:
 ```
 cd ./Dnw.Chat
 
-ASPNETCORE_ENVIRONMENT=Development \
-ASPNETCORE_URLS=https://localhost:5002 \
-PUB_SUB_TYPE=Redis
+export ASPNETCORE_ENVIRONMENT=Development
+export ASPNETCORE_URLS=https://localhost:5002
+export PUB_SUB_TYPE=Redis
 dotnet run --no-launch-profile
 ```
 
