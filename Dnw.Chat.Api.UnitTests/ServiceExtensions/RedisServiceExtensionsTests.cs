@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 using Xunit;
 
-namespace Dnw.Chat.Api.UnitTests.ServiceExtensionTests;
+namespace Dnw.Chat.Api.UnitTests.ServiceExtensions;
 
 public class RedisMqServiceExtensionsTests
 {

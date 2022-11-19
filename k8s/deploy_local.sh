@@ -20,6 +20,12 @@ kind load docker-image arm64v8/redis:latest
 docker pull rabbitmq:3.11-management
 kind load docker-image rabbitmq:3.11-management
 
+docker pull confluentinc/cp-zookeeper:7.3.0
+kind load docker-image confluentinc/cp-zookeeper:7.3.0
+
+docker pull confluentinc/cp-kafka:7.3.0
+kind load docker-image confluentinc/cp-kafka:7.3.0
+
 # Build local image, tag it and push it to the local registry
 TAG="localhost:5001/$RELEASE_NAME:latest"
 echo "TAG=$TAG"
