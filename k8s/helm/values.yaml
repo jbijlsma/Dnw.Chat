@@ -1,5 +1,8 @@
 PrivateContainerRegistry: "localhost:5001/"
 ServicePort: 5050
-PubSubType: "RabbitMq"
+PubSubType: "Kafka"
 RedisPort: 6379
 RabbitMqPort: 5672
+ZookeeperPort: 2181
+KafkaPort: 9092
+KafkaBrokerPort: 29092
