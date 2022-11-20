@@ -26,7 +26,7 @@ spec:
             - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
               value: "PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT"
             - name: KAFKA_ADVERTISED_LISTENERS
-              value: "PLAINTEXT://localhost:{{ .Values.KafkaPort }},PLAINTEXT_INTERNAL://kafka-service:{{ .Values.KafkaBrokerPort }}"
+              value: "PLAINTEXT://kafka-service:{{ .Values.KafkaPort }},PLAINTEXT_INTERNAL://kafka-service:{{ .Values.KafkaBrokerPort }}"
             - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
               value: "1"
             - name: KAFKA_TRANSACTION_STATE_LOG_MIN_ISR
