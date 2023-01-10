@@ -62,7 +62,4 @@ kind load docker-image registry.k8s.io/ingress-nginx/controller:v1.5.1
 
 # Install nginx as ingress
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-kubectl wait --namespace ingress-nginx \
-  --for=condition=ready pod \
-  --selector=app.kubernetes.io/component=controller \
-  --timeout=90s
+kubectl rollout status deployment/ingress-nginx-controller -n ingress-nginx --timeout=90s

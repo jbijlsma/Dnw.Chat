@@ -18,17 +18,17 @@ public class Program {
         if (pubSubType == PubSubType.Redis)
         {
             var connectionString = builder.Configuration.GetValue<string>("RedisConnectionString");
-            builder.Services.AddRedis(connectionString);
+            builder.Services.AddRedis(connectionString!);
         }
         else if (pubSubType == PubSubType.Kafka)
         {
             var bootstrapServers = builder.Configuration.GetValue<string>("KafkaBootstrapServers");
-            builder.Services.AddKafka(bootstrapServers);
+            builder.Services.AddKafka(bootstrapServers!);
         }
         else
         {
             var hostName = builder.Configuration.GetValue<string>("RabbitMqHostName");
-            builder.Services.AddRabbitMq(hostName);
+            builder.Services.AddRabbitMq(hostName!);
         }
 
         builder.Services.AddControllers();

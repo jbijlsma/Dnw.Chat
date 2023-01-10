@@ -8,11 +8,11 @@ RELEASE_NAME=dnw-chat
 #. ./create_kind_cluster.sh
 
 # Preload 3rd party images
-docker pull mcr.microsoft.com/dotnet/sdk:6.0-alpine
-kind load docker-image mcr.microsoft.com/dotnet/sdk:6.0-alpine
+docker pull mcr.microsoft.com/dotnet/sdk:7.0-jammy 
+kind load docker-image mcr.microsoft.com/dotnet/sdk:7.0-jammy
 
-docker pull mcr.microsoft.com/dotnet/aspnet:6.0-alpine
-kind load docker-image mcr.microsoft.com/dotnet/aspnet:6.0-alpine
+docker pull mcr.microsoft.com/dotnet/aspnet:7.0-jammy
+kind load docker-image mcr.microsoft.com/dotnet/aspnet:7.0-jammy
 
 docker pull arm64v8/redis:latest
 kind load docker-image arm64v8/redis:latest
